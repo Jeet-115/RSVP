@@ -43,10 +43,17 @@ if (config.nodeEnv !== 'production') {
   app.use(morgan('dev'));
 }
 
-app.get("/health", (req, res) => {
-  console.log("🩺 Health check at:", new Date().toLocaleString());
-  res.status(200).send("OK");
-});
+const healthHandler = (req, res) => {
+  res.status(200).json({
+    ok: true,
+    status: 'healthy',
+    uptimeSeconds: Math.floor(process.uptime()),
+    timestamp: new Date().toISOString(),
+  });
+};
+
+app.get('/health', healthHandler);
+app.get('/api/health', healthHandler);
 app.use('/api/rsvp', rsvpRoutes);
 app.use('/api', authRoutes);
 app.use('/api', adminRoutes);

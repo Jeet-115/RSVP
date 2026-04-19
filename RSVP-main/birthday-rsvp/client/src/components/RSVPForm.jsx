@@ -37,7 +37,8 @@ export default function RSVPForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="relative space-y-4">
+      <fieldset disabled={loading} className="space-y-4 disabled:opacity-80">
       <div>
         <label className="block text-sm mb-1 text-white/80" htmlFor="name">Name <span className="text-white/50">*</span></label>
         <TextInput
@@ -71,8 +72,23 @@ export default function RSVPForm() {
         disabled={loading}
         className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white bg-brand-500 hover:bg-brand-400 shadow-[0_14px_34px_rgba(10,132,255,0.25)] disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-brand-300/60"
       >
-        {loading ? 'Submitting...' : 'Submit'}
+        {loading ? 'Submitting your information...' : 'Submit'}
       </button>
+      </fieldset>
+
+      {loading && (
+        <div className="rounded-2xl border border-brand-300/20 bg-brand-500/10 px-4 py-3 text-sm text-white/90 backdrop-blur-sm">
+          <div className="flex items-start gap-3">
+            <div className="mt-0.5 h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+            <div>
+              <p className="font-semibold">We are submitting your information, please wait.</p>
+              <p className="mt-1 text-white/70">
+                This can take up to 30 seconds if the backend is waking up.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       {toast && <Toast {...toast} onClose={()=>setToast(null)} />}
     </form>
   )
