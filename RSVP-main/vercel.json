@@ -1,0 +1,10 @@
+{
+  "installCommand": "npm ci && npm --prefix RSVP/birthday-rsvp/client ci",
+  "buildCommand": "npm --prefix RSVP/birthday-rsvp/client run build",
+  "outputDirectory": "RSVP/birthday-rsvp/client/dist",
+  "framework": "vite"
+}
+
+
+
+
