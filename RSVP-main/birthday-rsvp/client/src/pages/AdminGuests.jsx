@@ -37,6 +37,14 @@ export default function AdminGuests() {
     return list
   }, [list, filter])
 
+  const stats = useMemo(() => {
+    const total = list.length
+    const attending = list.filter((x) => x.attending).length
+    const notAttending = total - attending
+    const attendanceRate = total ? Math.round((attending / total) * 100) : 0
+    return { total, attending, notAttending, attendanceRate }
+  }, [list])
+
   const exportCSV = () => {
     const csv = toCSV(filtered)
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
@@ -83,6 +91,25 @@ export default function AdminGuests() {
           >
             Logout
           </button>
+        </div>
+      </div>
+
+      <div className="mb-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+          <p className="text-xs uppercase tracking-wider text-white/50">Total RSVPs</p>
+          <p className="mt-2 text-2xl font-bold text-white">{stats.total}</p>
+        </div>
+        <div className="rounded-2xl border border-emerald-300/15 bg-emerald-500/10 p-4 backdrop-blur-sm">
+          <p className="text-xs uppercase tracking-wider text-emerald-100/70">Attending</p>
+          <p className="mt-2 text-2xl font-bold text-emerald-50">{stats.attending}</p>
+        </div>
+        <div className="rounded-2xl border border-rose-300/15 bg-rose-500/10 p-4 backdrop-blur-sm">
+          <p className="text-xs uppercase tracking-wider text-rose-100/70">Not Attending</p>
+          <p className="mt-2 text-2xl font-bold text-rose-50">{stats.notAttending}</p>
+        </div>
+        <div className="rounded-2xl border border-brand-300/20 bg-brand-500/10 p-4 backdrop-blur-sm">
+          <p className="text-xs uppercase tracking-wider text-brand-100/70">Attendance Rate</p>
+          <p className="mt-2 text-2xl font-bold text-white">{stats.attendanceRate}%</p>
         </div>
       </div>
 
