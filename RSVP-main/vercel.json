@@ -1,7 +1,7 @@
 {
-  "installCommand": "npm ci && npm --prefix RSVP/birthday-rsvp/client ci",
-  "buildCommand": "npm --prefix RSVP/birthday-rsvp/client run build",
-  "outputDirectory": "RSVP/birthday-rsvp/client/dist",
+  "installCommand": "npm --prefix birthday-rsvp ci",
+  "buildCommand": "npm --prefix birthday-rsvp run build",
+  "outputDirectory": "birthday-rsvp/client/dist",
   "framework": "vite",
   "rewrites": [
     { "source": "/:path*", "destination": "/index.html" }
