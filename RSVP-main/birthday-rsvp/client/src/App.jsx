@@ -30,10 +30,17 @@ export default function App() {
       <NeuralBackground className="opacity-90" intensity={1} />
       <header className="max-w-6xl mx-auto px-4 pt-6 pb-3">
         <div className="flex items-center justify-between">
-          <div className="text-sm text-white/70">
-            <span className="font-semibold text-white">RSVP</span>
-            <span className="mx-2 text-white/30">•</span>
-            <span className="text-white/70">Invite</span>
+          <div className="flex items-center gap-3 text-sm text-white/70">
+            <img
+              src="/logo.png"
+              alt="Website logo"
+              className="h-9 w-9 rounded-xl border border-white/15 bg-white/10 object-cover p-0.5 shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
+            />
+            <div>
+              <span className="font-semibold text-white">RSVP</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/70">Invite</span>
+            </div>
           </div>
         </div>
       </header>
